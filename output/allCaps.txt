@@ -1,0 +1,2 @@
+Total users: 5
+User names: ALICE,BOB,ANNA,CHARLIE,AMANDA

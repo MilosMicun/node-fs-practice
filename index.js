@@ -46,3 +46,20 @@ async function countUsers() {
 };
 countUsers();
 
+async function uppercaseUsers() {
+    try{
+        const data = await fs.readFile("./data/users.json","utf-8");
+        const users = JSON.parse(data);
+
+        const uUsers = users.map(user=> user.name.toUpperCase()).join(",");
+        await fs.writeFile(
+            "./output/allCaps.txt",
+            `Total users: ${users.length}\nUser names: ${uUsers}`
+        );
+        console.log("allCaps.txt created");
+        
+    }catch(err){
+        console.error("error",err.message)
+    };
+};
+uppercaseUsers();
