@@ -24,3 +24,25 @@ async function processUsers() {
 
 processUsers();
 
+async function countUsers() {
+    try{
+        const data = await fs.readFile('./data/users.json','utf-8');
+        const users = JSON.parse(data);
+
+        const usersB = users.filter(user=>user.name.startsWith("B"));
+        const count = usersB.length;
+        const names = usersB.map(user=>user.name).join(",");
+
+        await fs.writeFile(
+            "./output/countB.txt",
+            `Total users: ${users.length}\nUser names:${names}`
+        );
+        console.log("countB.txt created");
+        
+
+    }catch(err){
+        console.error("error",err.message)
+    };
+};
+countUsers();
+
